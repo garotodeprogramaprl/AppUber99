@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seu Motorista de Confiança</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --black: #0e0e0e;
+    --white: #f5f3ef;
+    --accent: #f5a623;
+    --gray: #888;
+    --card-bg: #1a1a1a;
+  }
+  body { font-family: 'DM Sans', sans-serif; background: var(--black); color: var(--white); overflow-x: hidden; }
+  
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 2rem; border-bottom: 1px solid #222; position: sticky; top: 0; background: rgba(14,14,14,0.95); backdrop-filter: blur(10px); z-index: 100; }
+  .logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.2rem; letter-spacing: -0.5px; }
+  .logo span { color: var(--accent); }
+  nav a { color: var(--white); text-decoration: none; font-size: 0.85rem; opacity: 0.7; transition: opacity 0.2s; }
+  nav a:hover { opacity: 1; }
+  .nav-links { display: flex; gap: 1.5rem; align-items: center; }
+  .btn-nav { background: var(--accent); color: var(--black) !important; padding: 0.5rem 1.2rem; border-radius: 50px; font-weight: 500; opacity: 1 !important; font-size: 0.85rem; }
+
+  .hero { min-height: 92vh; display: flex; flex-direction: column; justify-content: center; padding: 4rem 2rem 3rem; max-width: 900px; margin: 0 auto; }
+  .badge { display: inline-flex; align-items: center; gap: 6px; background: #1a1a1a; border: 1px solid #333; padding: 0.35rem 0.9rem; border-radius: 50px; font-size: 0.78rem; color: var(--accent); margin-bottom: 2rem; }
+  .badge::before { content: ''; width: 6px; height: 6px; background: #4caf50; border-radius: 50%; display: inline-block; animation: pulse 1.5s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+  h1 { font-family: 'Syne', sans-serif; font-size: clamp(2.8rem, 7vw, 5.5rem); font-weight: 800; line-height: 1.0; letter-spacing: -2px; margin-bottom: 1.5rem; }
+  h1 em { color: var(--accent); font-style: normal; }
+  .hero-sub { font-size: 1.1rem; color: #aaa; max-width: 520px; line-height: 1.7; margin-bottom: 2.5rem; }
+  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary { background: var(--accent); color: var(--black); padding: 0.9rem 2rem; border-radius: 50px; font-weight: 600; font-size: 1rem; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(245,166,35,0.35); }
+  .btn-secondary { background: transparent; color: var(--white); padding: 0.9rem 2rem; border-radius: 50px; font-weight: 500; font-size: 1rem; text-decoration: none; border: 1px solid #333; transition: border-color 0.2s; }
+  .btn-secondary:hover { border-color: #666; }
+  .hero-stats { display: flex; gap: 2.5rem; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #1f1f1f; flex-wrap: wrap; }
+  .stat-num { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 700; color: var(--white); }
+  .stat-label { font-size: 0.8rem; color: var(--gray); margin-top: 2px; }
+
+  section { padding: 5rem 2rem; max-width: 900px; margin: 0 auto; }
+  h2 { font-family: 'Syne', sans-serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; letter-spacing: -1px; margin-bottom: 0.5rem; }
+  .section-sub { color: #888; font-size: 0.95rem; margin-bottom: 3rem; }
+
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+  .service-card { background: var(--card-bg); border: 1px solid #2a2a2a; border-radius: 16px; padding: 1.5rem; transition: border-color 0.2s, transform 0.2s; }
+  .service-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+  .service-icon { font-size: 1.8rem; margin-bottom: 1rem; }
+  .service-card h3 { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 600; margin-bottom: 0.4rem; }
+  .service-card p { font-size: 0.82rem; color: #888; line-height: 1.5; }
+
+  .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; }
+  .why-item { border-left: 2px solid var(--accent); padding-left: 1rem; }
+  .why-item h3 { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.95rem; margin-bottom: 0.3rem; }
+  .why-item p { font-size: 0.82rem; color: #888; line-height: 1.5; }
+
+  .contact-box { background: var(--card-bg); border: 1px solid #2a2a2a; border-radius: 20px; padding: 2.5rem; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+  @media(max-width: 500px) { .contact-grid { grid-template-columns: 1fr; } }
+  .contact-input { background: #111; border: 1px solid #333; border-radius: 10px; padding: 0.75rem 1rem; color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 0.9rem; width: 100%; }
+  .contact-input:focus { outline: none; border-color: var(--accent); }
+  .contact-input::placeholder { color: #555; }
+  textarea.contact-input { resize: vertical; min-height: 100px; grid-column: 1/-1; }
+  .btn-send { background: var(--accent); color: var(--black); border: none; padding: 0.9rem 2rem; border-radius: 50px; font-weight: 600; font-size: 0.95rem; cursor: pointer; width: 100%; margin-top: 0.5rem; transition: opacity 0.2s; }
+  .btn-send:hover { opacity: 0.88; }
+  .contact-alt { display: flex; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap; }
+  .contact-chip { display: flex; align-items: center; gap: 8px; background: #111; border: 1px solid #2a2a2a; border-radius: 50px; padding: 0.55rem 1.1rem; font-size: 0.82rem; text-decoration: none; color: var(--white); transition: border-color 0.2s; }
+  .contact-chip:hover { border-color: var(--accent); }
+
+  .area-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+  .area-tag { background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 50px; padding: 0.35rem 0.9rem; font-size: 0.8rem; color: #aaa; }
+
+  footer { border-top: 1px solid #1a1a1a; padding: 2rem; text-align: center; color: #444; font-size: 0.8rem; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">moto<span>r</span>ista</div>
+  <div class="nav-links">
+    <a href="#servicos">Serviços</a>
+    <a href="#contato">Contato</a>
+    <a href="https://wa.me/73991060416?text=Oi,%20quero%20uma%20corrida!" class="btn-nav">Chamar agora</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="badge">Disponível agora</div>
+  <h1>Seu motorista<br>particular <em>de confiança</em></h1>
+  <p class="hero-sub">Corridas confortáveis, pontuais e seguras em Itabuna e região. Realizo corridas para todas as necessidades, com opção de agendamento e serviços de entrega rápida e confiável.</p>
+  <div class="hero-ctas">
+    <a href="https://wa.me/73991060416?text=Oi,%20quero%20uma%20corrida!" class="btn-primary">Falar agora no WhatsApp</a>
+    <a href="#servicos" class="btn-secondary">Ver serviços</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">5★</div><div class="stat-label">Avaliação média</div></div>
+    <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Pontualidade</div></div>
+    <div class="stat"><div class="stat-num">24h</div><div class="stat-label">Disponibilidade</div></div>
+  </div>
+</div>
+
+<section id="servicos">
+  <h2>O que ofereço</h2>
+  <p class="section-sub">Tipos de corrida e atendimento disponíveis</p>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">🚗</div>
+      <h3>Corridas do dia a dia</h3>
+      <p>Transporte para qualquer destino com conforto, segurança e pontualidade.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📅</div>
+      <h3>Agendamento</h3>
+      <p>Programe sua corrida com antecedência e evite imprevistos.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">✈️</div>
+      <h3>Aeroporto</h3>
+      <p>Viagens com pontualidade para Ilhéus e região.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📦</div>
+      <h3>Entregas locais e intermunicipais</h3>
+      <p>Busco e entrego encomendas em Itabuna e outras cidades, com rapidez, cuidado e total confiança.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🎉</div>
+      <h3>Eventos</h3>
+      <p>Ida e volta para festas, casamentos e confraternizações.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🛒</div>
+      <h3>Compras</h3>
+      <p>Acompanhamento em mercados, lojas e shoppings.</p>
+    </div>
+  </div>
+</section>
+
+<section id="por-que">
+  <h2>Por que me escolher</h2>
+  <p class="section-sub">Diferenciais que fazem a diferença</p>
+  <div class="why-grid">
+    <div class="why-item">
+      <h3>Conforto e cuidado</h3>
+      <p>Veículo sempre limpo, climatizado e pronto para uma viagem tranquila.</p>
+    </div>
+    <div class="why-item">
+      <h3>Preço combinado antes</h3>
+      <p>Você sabe quanto vai pagar antes de sair, sem surpresas.</p>
+    </div>
+    <div class="why-item">
+      <h3>Atendimento rápido</h3>
+      <p>Resposta rápida no WhatsApp e agilidade no atendimento.</p>
+    </div>
+    <div class="why-item">
+      <h3>Pontualidade garantida</h3>
+      <p>Compromisso com horários, principalmente em agendamentos e viagens.</p>
+    </div>
+  </div>
+  <div class="area-tags">
+    <span class="area-tag">📍 Itabuna</span>
+    <span class="area-tag">📍 Ilhéus</span>
+    <span class="area-tag">📍 Atendimento em toda a região</span>
+  </div>
+</section>
+
+<section id="contato">
+  <h2>Fale comigo</h2>
+  <p class="section-sub">Mande uma mensagem ou me chame direto no WhatsApp</p>
+  <div class="contact-box">
+    <div class="contact-grid">
+      <input class="contact-input" type="text" placeholder="Seu nome" />
+      <input class="contact-input" type="tel" placeholder="Seu telefone" />
+      <textarea class="contact-input" placeholder="Me conte de onde vai e para onde quer ir (ou só diga oi 👋)"></textarea>
+    </div>
+    <button class="btn-send" onclick="window.open('https://wa.me/73991060416?text=Oi,%20vim%20pelo%20site!','_blank')">Enviar via WhatsApp</button>
+    <div class="contact-alt">
+      <a href="tel:+5531993601901" class="contact-chip">📞 Ligar agora</a>
+      <a href="https://instagram.com/Parlloan" class="contact-chip">📸 Instagram</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Feito com cuidado · Seu Motorista de Confiança · Itabuna, BA
+</footer>
+
+</body>
+</html>
