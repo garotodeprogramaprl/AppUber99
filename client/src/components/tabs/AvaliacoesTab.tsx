@@ -29,7 +29,7 @@ const AVALIACOES = [
   },
   {
     nome: 'Ana Costa',
-    avaliacao: 4,
+    avaliacao: 5,
     texto: 'Muito bom! Motorista educado e veículo confortável.',
     data: 'Há 2 meses',
   },
