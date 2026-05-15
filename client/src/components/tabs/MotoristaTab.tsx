@@ -13,9 +13,9 @@ const MOTORISTA_INFO = {
   nome: 'Parlloan Kumar',
   foto: 'https://i.imgur.com/ryu2frB.jpeg',
   avaliacao: 4.9,
-  avaliacoes: 247,
-  experiencia: '5+ anos',
-  localizacao: 'Vitória da Conquista, BA',
+  avaliacoes: 647,
+  experiencia: '2 meses',
+  localizacao: 'Itabuna, BA',
   instagram: '@Parlloan',
   descricao: 'Motorista profissional com experiência em transporte de passageiros. Veículo limpo, confortável e seguro. Atendimento de qualidade garantido.',
 };
